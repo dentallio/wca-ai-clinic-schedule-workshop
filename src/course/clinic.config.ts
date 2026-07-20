@@ -9,7 +9,8 @@ export const courseProfile: CourseProfile = {
   shifts: [
     { id: "morning", label: "早診", start: "09:00", end: "12:00" },
     { id: "afternoon", label: "午診", start: "14:00", end: "17:00" },
-    { id: "evening", label: "晚診", start: "18:00", end: "21:00" },
+    // 課堂預埋錯誤：請學員從 Preview 找出晚診時間不合理，再讓 Claude 小範圍修正。
+    { id: "evening", label: "晚診", start: "18:00", end: "12:00" },
   ],
   people: [
     {
