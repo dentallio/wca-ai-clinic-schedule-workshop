@@ -6,6 +6,7 @@ import { findEntry } from "@/domain/schedule";
 import type { CoursePerson, ScheduleEntry } from "@/domain/types";
 import { useMemo, useState } from "react";
 import { useSchedule } from "./ScheduleProvider";
+import { CoverageWarnings } from "./CoverageWarnings";
 import { SyncBadge } from "./SyncBadge";
 
 interface SelectedCell {
@@ -93,6 +94,7 @@ export function ScheduleBoard() {
       </section>
 
       {error && <div className="error-callout" role="alert">同步錯誤：{error}</div>}
+      <CoverageWarnings entries={entries} dates={dates} />
       <section className="schedule-card" aria-busy={syncState === "connecting"}>
         <div className="schedule-toolbar">
           <div>
