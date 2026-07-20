@@ -1,17 +1,42 @@
-# Stage 5：保留原版成果並完成同步部署
+# Stage 5：成果上線與跨裝置同步驗收
 
-## 上線前驗收
+## 上線前停止新增功能
 
-1. 重走 Stage 3 六個操作與 Stage 4 三層人力規則。
-2. 開啟 `/settings`，完成合成資料匯出／匯入。
-3. 開啟 `/course-check`，確認目前是本機模式或 Firestore 雲端模式。
-4. 執行 `npm run verify`，確認 lint、型別、12 測試與 build 全綠。
-5. Review changes 後再分開核准 commit 與 push。
+1. 重新完成 Stage 3 六個手動驗收。
+2. 確認 Stage 4 的 0／1／2 人警示。
+3. 開啟 `/course-check`，確認為 Firestore 雲端模式。
+4. 先執行 `npm run verify`。
+5. Review changes 後，由學員分開核准 commit 與 push。
+
+## Vercel 驗收
+
+1. 到 GitHub 記下最新 commit 的前 7 碼。
+2. 到 Vercel Deployments，確認 Production deployment 對應同一 commit。
+3. 開啟 Production URL，確認頁面標題、人員與三班時間正確。
 
 ## 三裝置同步
 
-設定 Firebase 並部署後，以電腦、手機與另一裝置開啟相同 Production URL。任一裝置在當日抽屜補入一名合成助理，其他裝置應更新相同日期與診次，重新整理後仍一致。
+所有裝置只准使用合成資料：
 
-若不同步，先核對 Production URL、`/course-check` 模式、GitHub／Vercel commit 與 Firebase 文件；不要把 Firestore Rules 改成全面開放。
+1. 電腦、自己的手機與鄰座裝置開啟相同 Production URL。
+2. 三個裝置都顯示右上角「已同步／雲端」。
+3. 電腦把王醫師（虛構）某一格從早診改成午診。
+4. 手機與鄰座裝置應在合理時間內顯示相同格子的午診。
+5. 重新整理三個裝置，資料仍一致。
 
-Checkpoint：`checkpoint/original-ui-stage-5`。這仍是未登入的合成資料 Demo，不能拿來放真實營運資料。
+若不同步，依序檢查：
+
+- 是否三個裝置都開啟 Production，而不是有人開 localhost。
+- `/course-check` 是否顯示 Firestore 雲端模式。
+- 三個版本是否來自同一 GitHub commit。
+- Firebase Console 是否真的出現該文件。
+- Firestore Rules 是否為本 repo 已審核版本。
+
+不要用全面開放規則排除問題。
+
+## 最終 Checkpoint
+
+- `npm run verify` 全綠。
+- GitHub 與 Vercel commit 相同。
+- 三裝置同步與重新整理通過。
+- 學員能說出：「這是可部署、可同步的合成資料 Demo；沒有登入與角色權限，不能放真實資料。」

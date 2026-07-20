@@ -5,10 +5,10 @@ import type { ScheduleRepository } from "./schedule-repository";
 const STORAGE_KEY = "clinic-schedule-workshop:entries:v1";
 const subscribers = new Set<(entries: ScheduleEntry[]) => void>();
 
-function readEntries(initialEntries: ScheduleEntry[]): ScheduleEntry[] {
+function readEntries(): ScheduleEntry[] {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return initialEntries;
+    if (!raw) return [];
     const parsed: unknown = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed.filter(isScheduleEntry) : [];
   } catch {
@@ -21,13 +21,13 @@ function writeEntries(entries: ScheduleEntry[]): void {
   subscribers.forEach((subscriber) => subscriber(entries));
 }
 
-export function createLocalScheduleRepository(initialEntries: ScheduleEntry[] = []): ScheduleRepository {
+export function createLocalScheduleRepository(): ScheduleRepository {
   return {
     mode: "local",
     subscribe(onEntries, onError) {
       const listener = () => {
         try {
-          onEntries(readEntries(initialEntries));
+          onEntries(readEntries());
         } catch (error) {
           onError(error instanceof Error ? error : new Error("無法讀取本機練習資料"));
         }
@@ -41,11 +41,11 @@ export function createLocalScheduleRepository(initialEntries: ScheduleEntry[] = 
       };
     },
     async save(entry) {
-      const entries = readEntries(initialEntries);
+      const entries = readEntries();
       writeEntries([...entries.filter((item) => item.id !== entry.id), entry]);
     },
     async remove(id) {
-      writeEntries(readEntries(initialEntries).filter((entry) => entry.id !== id));
+      writeEntries(readEntries().filter((entry) => entry.id !== id));
     },
     async replaceAll(entries) {
       writeEntries(entries);
