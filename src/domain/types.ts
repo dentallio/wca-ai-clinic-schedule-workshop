@@ -12,11 +12,17 @@ export interface CoursePerson {
   id: string;
   displayName: string;
   role: PersonRole;
+  title?: string;
+  department?: string;
+  color?: string;
   availability?: Array<{ weekday: number; shiftId: string }>;
 }
 
 export interface CourseProfile {
   clinicName: string;
+  region: string;
+  appName: string;
+  appOwner: string;
   shifts: ShiftDefinition[];
   people: CoursePerson[];
 }

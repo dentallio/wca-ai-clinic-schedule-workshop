@@ -1,0 +1,95 @@
+/* ── 「穩重」主題變體 ───────────────────────────────────────────────────
+   同一套設計 token，調整呈現：給診所院長/集團主管看的 B2B 質感。
+   - 手寫體標題 → 乾淨黑體
+   - sticker 硬框＋位移陰影 → 柔和陰影
+   - 珊瑚色由「填滿」退為「點綴」，標題改用 ink
+   仍維持暖色系（無藍、無冷灰），只是更克制。
+   ──────────────────────────────────────────────────────────────────── */
+
+[data-theme="pro"] {
+  /* 標題改用乾淨黑體，不再手寫 */
+  --font-display: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  /* 頁面底色更乾淨一點 */
+  --bg: #fbf8f3;
+}
+
+/* 標題：珊瑚 → 沉穩墨色 */
+[data-theme="pro"] .page-head__title,
+[data-theme="pro"] .drawer__title,
+[data-theme="pro"] h1,
+[data-theme="pro"] .h1 {
+  color: var(--ink-900);
+  letter-spacing: 0;
+}
+[data-theme="pro"] .page-head__title {
+  font-weight: 800;
+  font-size: var(--fs-2xl);
+}
+
+/* eyebrow 收斂 */
+[data-theme="pro"] .ui-eyebrow {
+  color: var(--ink-500);
+  letter-spacing: 0.06em;
+}
+
+/* sticker 卡片/stat/banner → 柔和陰影、細邊框 */
+[data-theme="pro"] .ui-card--sticker,
+[data-theme="pro"] .ui-stat,
+[data-theme="pro"] .ai-banner {
+  border: 1px solid var(--ink-200);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+}
+[data-theme="pro"] .ai-banner {
+  background: var(--paper);
+}
+[data-theme="pro"] .ai-banner__icon,
+[data-theme="pro"] .risk__icon--danger {
+  border-radius: var(--radius-md);
+}
+
+/* stat 數字回歸沉穩，珊瑚僅保留於關鍵指標 */
+[data-theme="pro"] .ui-stat__value {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  color: var(--ink-900);
+}
+[data-theme="pro"] .ui-stat__value--coral {
+  color: var(--coral-700);
+}
+
+/* sticker 按鈕 → 柔和實心 */
+[data-theme="pro"] .ui-btn--sticker {
+  border: none;
+  box-shadow: var(--shadow-sm);
+}
+[data-theme="pro"] .ui-btn--sticker:active {
+  box-shadow: var(--shadow-xs);
+}
+
+/* chip 由填色 → 描邊，較不「貼紙感」 */
+[data-theme="pro"] .ui-chip {
+  background: var(--paper);
+  color: var(--ink-700);
+  box-shadow: inset 0 0 0 1px var(--ink-200);
+}
+[data-theme="pro"] .ui-chip--coral,
+[data-theme="pro"] .ui-chip:not(.ui-chip--mint):not(.ui-chip--sun):not(.ui-chip--ink) {
+  color: var(--coral-700);
+}
+
+/* 日曆/卡片圓角收斂一級 */
+[data-theme="pro"] .cal,
+[data-theme="pro"] .ui-card {
+  border-radius: var(--radius-md);
+}
+
+/* 側邊欄品牌字改黑體感（latin 維持，但去圓潤） */
+[data-theme="pro"] .sidebar__brand-name {
+  letter-spacing: -0.01em;
+}
+
+/* 選取/今日高亮的珊瑚改細邊，較專業 */
+[data-theme="pro"] .cal__cell--today {
+  box-shadow: inset 0 0 0 1.5px var(--coral-400);
+}
