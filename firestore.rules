@@ -1,0 +1,42 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 課程 Demo 沒有登入，因此這不是正式的使用者存取控制。
+    // 規則只限制可寫入的集合、欄位與資料形狀；專案只准放合成資料。
+    match /courseScheduleEntries/{entryId} {
+      allow read: if true;
+      allow create, update: if validEntry(entryId);
+      allow delete: if true;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function validEntry(entryId) {
+      let data = request.resource.data;
+      return data.keys().hasOnly([
+          'id', 'date', 'personId', 'state', 'shiftId', 'note', 'updatedAt'
+        ])
+        && data.keys().hasAll(['id', 'date', 'personId', 'state', 'updatedAt'])
+        && data.id == entryId
+        && data.id is string
+        && data.date is string
+        && data.date.matches('^\\d{4}-\\d{2}-\\d{2}$')
+        && data.personId is string
+        && data.personId.size() > 0
+        && data.personId.size() <= 80
+        && data.state in ['shift', 'leave']
+        && data.updatedAt is int
+        && (!data.keys().hasAny(['note']) || (data.note is string && data.note.size() <= 200))
+        && (
+          (data.state == 'shift'
+            && data.keys().hasAll(['shiftId'])
+            && data.shiftId in ['morning', 'afternoon', 'evening'])
+          ||
+          (data.state == 'leave' && !data.keys().hasAny(['shiftId']))
+        );
+    }
+  }
+}
