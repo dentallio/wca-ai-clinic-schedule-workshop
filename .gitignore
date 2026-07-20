@@ -8,4 +8,5 @@ coverage/
 .env*
 !.env.example
 .firebase/
+.playwright-cli/
 firebase-debug.log

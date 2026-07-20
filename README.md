@@ -33,6 +33,8 @@ npm run verify
 
 每階段細節放在 `docs/stages/`，卡住時看 `COURSE_CHECKPOINTS.md`。
 
+講師與助教另見 `docs/INSTRUCTOR_RUNBOOK.md`。
+
 ## Firebase 與即時同步
 
 依 [FIREBASE_SETUP.md](FIREBASE_SETUP.md) 建立學員自己的 Firebase 專案：
