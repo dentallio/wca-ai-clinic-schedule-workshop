@@ -103,6 +103,7 @@ a { color: inherit; }
 .schedule-table tbody th { padding: 12px 14px; text-align: left; background: #fbfaf6; font-size: 13px; }
 .schedule-table tbody th span, .schedule-table tbody th small { display: block; }
 .schedule-table tbody th small { margin-top: 3px; color: var(--muted); font-weight: 400; }
+.schedule-table tbody th .availability-note { color: var(--teal); font-size: 10px; line-height: 1.35; }
 .schedule-table td { height: 66px; padding: 5px; }
 .group-row th { padding: 7px 14px !important; background: #e8ece8 !important; color: var(--teal); font-size: 11px !important; letter-spacing: .12em; }
 .schedule-cell { width: 100%; min-height: 54px; border: 1px solid transparent; background: transparent; cursor: pointer; }

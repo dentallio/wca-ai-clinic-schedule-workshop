@@ -42,6 +42,15 @@ function PersonRows({
       <th scope="row">
         <span>{person.displayName}</span>
         <small>{person.role === "doctor" ? "醫師" : "助理"}</small>
+        {person.availability && (
+          <small className="availability-note">
+            示範可排：{person.availability.map((item) => {
+              const weekdays = ["週日", "週一", "週二", "週三", "週四", "週五", "週六"];
+              const shift = courseProfile.shifts.find((value) => value.id === item.shiftId);
+              return `${weekdays[item.weekday]}${shift?.label ?? item.shiftId}`;
+            }).join("、")}
+          </small>
+        )}
       </th>
       {dates.map((date) => {
         const entry = findEntry(entries, date, person.id);
