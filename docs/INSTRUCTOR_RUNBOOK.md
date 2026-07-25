@@ -5,7 +5,8 @@
 - 使用乾淨 GitHub 帳號流程 clone 一次。
 - 使用乾淨 Firebase 專案重走 `FIREBASE_SETUP.md`。
 - 驗證 `npm ci && npm run verify`。
-- 檢查五個 checkpoint branch、五個 tag 與錯誤練習 branch。
+- 檢查月曆版七個現行 checkpoint 與對應 tag。
+- Stage 5 用兩個瀏覽器確認 localStorage 不同步；Stage 6 再設定 Firestore；Stage 7 才做三裝置同步。
 - 電腦、手機、另一台裝置完成 Firestore 即時同步。
 - 預備每階段完成畫面截圖與一段離線備援影片。
 

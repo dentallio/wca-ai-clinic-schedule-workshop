@@ -1,17 +1,12 @@
-# Stage 5：保留原版成果並完成同步部署
+# Stage 5：部署月曆版 localStorage 成果
 
-## 上線前驗收
+1. 重走月曆、當日抽屜、補人、換人、休假與 Stage 4 人力警示。
+2. 到 `/settings` 匯出合成資料 JSON。
+3. 到 `/course-check` 確認目前仍是「本機練習」。
+4. 執行 `npm run verify`，Review 後分開核准 commit 與 push。
+5. 在 Vercel 指定本次選定的 Production Branch，核對 GitHub／Vercel commit。
+6. 電腦新增一筆合成班別；手機或無痕視窗能開網站，但看不到該筆 localStorage 資料。
 
-1. 重走 Stage 3 六個操作與 Stage 4 三層人力規則。
-2. 開啟 `/settings`，完成合成資料匯出／匯入。
-3. 開啟 `/course-check`，確認目前是本機模式或 Firestore 雲端模式。
-4. 執行 `npm run verify`，確認 lint、型別、12 測試與 build 全綠。
-5. Review changes 後再分開核准 commit 與 push。
+這個不同步是 Stage 5 的成功證據。不要為了排除部署問題而提早填 Firebase config 或放寬 Rules。
 
-## 三裝置同步
-
-設定 Firebase 並部署後，以電腦、手機與另一裝置開啟相同 Production URL。任一裝置在當日抽屜補入一名合成助理，其他裝置應更新相同日期與診次，重新整理後仍一致。
-
-若不同步，先核對 Production URL、`/course-check` 模式、GitHub／Vercel commit 與 Firebase 文件；不要把 Firestore Rules 改成全面開放。
-
-Checkpoint：`checkpoint/original-ui-stage-5`。這仍是未登入的合成資料 Demo，不能拿來放真實營運資料。
+Checkpoint：`checkpoint/original-ui-lesson-5-vercel-local`。

@@ -44,7 +44,7 @@ export function ScheduleBoard() {
     <>
       <PageHead
         title="排班月曆"
-        sub={`${view.year} 年 ${view.month} 月　·　原版操作教學 · Stage ${CURRENT_WORKSHOP_STAGE} / 5`}
+        sub={`${view.year} 年 ${view.month} 月　·　原版操作教學 · Stage ${CURRENT_WORKSHOP_STAGE} / 7`}
         right={
           <div className="month-switch" role="group" aria-label="切換月份">
             {months.map((month, index) => (

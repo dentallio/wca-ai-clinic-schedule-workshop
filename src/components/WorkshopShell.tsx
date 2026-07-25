@@ -88,7 +88,7 @@ export function WorkshopShell({ children }: { children: ReactNode }) {
 
         <div className="sidebar__footer">
           🏥 {courseProfile.clinicName} · {courseProfile.region}<br />
-          課程版 · Stage {CURRENT_WORKSHOP_STAGE} / 5<br />
+          課程版 · Stage {CURRENT_WORKSHOP_STAGE} / 7<br />
           不可用於真實營運
         </div>
       </aside>
