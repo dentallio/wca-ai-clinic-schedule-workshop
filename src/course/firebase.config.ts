@@ -3,8 +3,8 @@
  *
  * 這些欄位是 Firebase Web App 的公開識別資訊，不是管理員密鑰。
  * 請勿在此貼 service account JSON、私鑰、密碼、token 或任何登入資訊。
- * 沒填完時系統會自動使用「本機練習模式」，仍可完成階段 1～4，
- * 但階段 5 的跨裝置同步必須填入自己的 Firebase 專案。
+ * 沒填完時系統會自動使用「本機練習模式」，仍可完成 Stage 1～5，
+ * Stage 6 才填入自己的 Firebase 專案；Stage 7 再驗收跨裝置同步。
  */
 export const firebaseCourseConfig = {
   apiKey: "PASTE_YOUR_FIREBASE_API_KEY",

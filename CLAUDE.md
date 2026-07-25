@@ -25,6 +25,9 @@
 
 - Stage 2：`src/course/clinic.config.ts`
 - Stage 4：`src/domain/rules/` 與對應警示元件、測試
+- Stage 5：只做 Vercel 部署與 localStorage 對照，不填 Firebase config
+- Stage 6：依教材填入 `src/course/firebase.config.ts` 與發布既有 Rules
+- Stage 7：只做版本、Production Branch 與三裝置同步驗收
 - 一般介面：`src/components/` 與 `src/app/globals.css`
 - 文件與測試：`docs/`、`tests/`
 

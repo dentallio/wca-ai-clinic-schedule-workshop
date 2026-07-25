@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-開啟 `http://localhost:3000`。尚未填 Firebase 時，網站會使用瀏覽器 `localStorage`，右上角顯示「本機練習」。這足以完成 Stage 1～4，但無法跨裝置同步。
+開啟 `http://localhost:3000`。尚未填 Firebase 時，網站會使用瀏覽器 `localStorage`，右上角顯示「本機練習」。這足以完成 Stage 1～5；Stage 5 會先把本機模式部署到 Vercel，但尚不能跨裝置同步。
 
 常用檢查：
 
@@ -23,15 +23,19 @@ npm run build
 npm run verify
 ```
 
-## 五階段路線
+## 七階段技術路線
 
 1. Preview：開啟專案、閱讀 README／CLAUDE.md、確認沒有意外變更。
 2. AI 協作：只修改 `src/course/clinic.config.ts`，加入虛構診所、班別與人員。
 3. 核心功能：驗收點格排班、換班、休假、前後週與重新整理。
 4. 診所規則：在獨立規則模組加入「助理少於 2 人」警示，並做邊界與回歸測試。
-5. 上線同步：填入 Firebase Web config、發布規則、部署 Vercel，使用三個裝置驗收。
+5. Vercel 首次上線：保持 localStorage，先證明網站程式可以部署。
+6. Firestore 雲端模式：發布規則、填入 Firebase Web config，確認 `/course-check` 顯示雲端模式。
+7. 三裝置同步：核對 GitHub／Vercel commit，使用三個裝置完成即時同步與重新整理驗收。
 
 每階段細節放在 `docs/stages/`，卡住時看 `COURSE_CHECKPOINTS.md`。
+
+課堂第 8 課「備份與維護」及第 9 課「安全升級門檻」不新增程式 checkpoint；它們使用 Stage 7 成果進行維護與風險判斷。
 
 講師與助教另見 `docs/INSTRUCTOR_RUNBOOK.md`。
 
@@ -52,7 +56,8 @@ Firebase Web config 是前端專案識別資訊，不是資料庫門鎖；禁止
 2. 到 Vercel 使用 GitHub 匯入該 repo。
 3. Framework Preset 選 Next.js，Build Command 維持 `npm run build`。
 4. 部署後開啟 Production URL，以合成資料新增一格班。
-5. 電腦、手機及鄰座裝置開啟相同 URL，驗收即時更新。
+5. Stage 5 先確認手機能開啟、但看不到電腦 localStorage 資料。
+6. Stage 6 完成 Firestore 後，再於 Stage 7 使用電腦、手機及鄰座裝置驗收即時更新。
 
 private GitHub repository 只保護程式碼；未登入網站本身仍不可放真實資料。
 
@@ -61,6 +66,7 @@ private GitHub repository 只保護程式碼；未登入網站本身仍不可放
 | 檔案 | 用途 |
 |---|---|
 | `src/course/clinic.config.ts` | Stage 2 診所名稱、班別、虛構人員 |
+| `src/course/workshop-stage.ts` | 目前技術 checkpoint（Stage 1～7） |
 | `src/course/firebase.config.ts` | 學員自己的 Firebase Web config |
 | `src/domain/` | 日期、排班與規則的純邏輯 |
 | `src/data/` | 本機／Firestore 資料存取 |

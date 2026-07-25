@@ -1,10 +1,10 @@
-# Stage 5：成果上線與跨裝置同步驗收
+# Stage 5：先把 localStorage 版本部署到 Vercel
 
 ## 上線前停止新增功能
 
 1. 重新完成 Stage 3 六個手動驗收。
 2. 確認 Stage 4 的 0／1／2 人警示。
-3. 開啟 `/course-check`，確認為 Firestore 雲端模式。
+3. 開啟 `/course-check`，確認目前仍是「本機練習」模式。
 4. 先執行 `npm run verify`。
 5. Review changes 後，由學員分開核准 commit 與 push。
 
@@ -14,29 +14,32 @@
 2. 到 Vercel Deployments，確認 Production deployment 對應同一 commit。
 3. 開啟 Production URL，確認頁面標題、人員與三班時間正確。
 
-## 三裝置同步
+## 兩個瀏覽器對照
 
-所有裝置只准使用合成資料：
+所有畫面只准使用合成資料：
 
-1. 電腦、自己的手機與鄰座裝置開啟相同 Production URL。
-2. 三個裝置都顯示右上角「已同步／雲端」。
-3. 電腦把王醫師（虛構）某一格從早診改成午診。
-4. 手機與鄰座裝置應在合理時間內顯示相同格子的午診。
-5. 重新整理三個裝置，資料仍一致。
+1. 電腦在 Production URL 新增一筆合成班別並重新整理，資料仍存在。
+2. 手機或無痕視窗開啟同一個 Production URL。
+3. 手機能開啟網站，但看不到電腦剛才新增的 localStorage 資料。
+4. 兩個瀏覽器都顯示「本機練習」。
 
-若不同步，依序檢查：
+這個不一致是 Stage 5 的成功證據，不是部署失敗。Stage 6 才設定 Firestore。
+
+若 Production 無法開啟，依序檢查：
 
 - 是否三個裝置都開啟 Production，而不是有人開 localhost。
-- `/course-check` 是否顯示 Firestore 雲端模式。
-- 三個版本是否來自同一 GitHub commit。
-- Firebase Console 是否真的出現該文件。
-- Firestore Rules 是否為本 repo 已審核版本。
+- `/course-check` 是否仍顯示本機模式。
+- GitHub 與 Vercel 是否來自同一個 branch 與 commit。
+- build log 的第一個完整錯誤。
 
-不要用全面開放規則排除問題。
+不要為了排除部署問題而提早填 Firebase config 或放寬 Firestore Rules。
 
 ## 最終 Checkpoint
 
 - `npm run verify` 全綠。
 - GitHub 與 Vercel commit 相同。
-- 三裝置同步與重新整理通過。
-- 學員能說出：「這是可部署、可同步的合成資料 Demo；沒有登入與角色權限，不能放真實資料。」
+- Production 網址可開，且與 GitHub commit 一致。
+- 同一瀏覽器重新整理後資料仍在；另一個瀏覽器看不到該筆資料。
+- 學員能說出：「網站程式已上線，但資料還沒有跨裝置同步。」
+
+新救援 checkpoint：`checkpoint/lesson-5-vercel-local`。月曆版使用 `checkpoint/original-ui-lesson-5-vercel-local`。
